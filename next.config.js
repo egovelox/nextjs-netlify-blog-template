@@ -11,7 +11,7 @@ module.exports = withMdxEnhanced({
     config.module.rules.push(
       ...[
         {
-          test: /\.yml$/,
+          test: /\.yml$/, // this loader allows .yml imports, i.e meta/authors
           type: "json",
           use: "yaml-loader",
         },

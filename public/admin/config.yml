@@ -5,10 +5,10 @@ media_folder: public/images
 public_folder: /images
 publish_mode: editorial_workflow
 
-collections:
+collections: # A list of collections the CMS should be able to edit
   - name: "config"
     label: "Config"
-    delete: false
+    delete: false # Prevent users from deleting documents in this collection
     editor:
       preview: false
     files:
@@ -88,19 +88,23 @@ collections:
                 widget: "string"
                 hint: "Tag name for displaying on the site"
 
-  - name: "posts"
-    label: "Posts"
+  - name: "posts" # used in NCMS routes: admin/#/collections/posts ...
+    label: "Posts" # Used in the UI
+    label_singular: 'Post' # Used in the UI, ie: "New Post"
+    description: >
+      The description is a great place for tone setting, high level information, and editing
+      guidelines that are specific to a collection.
     folder: "src/pages/posts"
     extension: "mdx"
     format: "frontmatter"
-    create: true
+    create: true # Allow users to create new documents in this collection
     slug: "{{slug}}"
     identifier_field: slug
     summary: "{{title}}"
     fields:
       - label: "Slug"
         name: "slug"
-        widget: "string"
+        widget: "string" # widget types : string, datetime, list, relation, markdown
       - label: "Title"
         name: "title"
         widget: "string"
@@ -121,7 +125,7 @@ collections:
           - "authors.*.name"
         valueField: "authors.*.slug"
       - label: Tags
-        label_singular: "Tag"
+        label_singular: "Tag" # Used in the UI, ie: "New Tag"
         name: "tags"
         widget: list
         summary: "{{fields.tag}}"
